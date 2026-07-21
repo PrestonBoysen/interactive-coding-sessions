@@ -103,7 +103,7 @@ print(condition_3 or condition_4) # False
 # OR returns True as soon as least one condition is True. 
 
 # let's do a few more calculations! 
-print(True + True) # True are 1, False are 0 
+print(True + True) # True are 1, False are zero. 
 print(True == 1)
 print(False == 0) 
 print(True * 5) # This is 5, becuase for Python True is 1 
