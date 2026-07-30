@@ -7,8 +7,8 @@
 #we've also seen some of them: 
 # lists are iterable: 
 fruits = ["banana", "apple", "mango"]
-for item in fruits: 
-    print(item)
+for f in fruits: 
+    print(f)
 
 # we've also seen in strings 
 my_word = "Superfragilistic" 
@@ -49,4 +49,28 @@ Fruits = ["Banana", "Mango", "Apple"]
 
 # The first function is called enumerate(): 
 for (index, item) in enumerate(Fruits):
-     
+     # When, instead of iterating on the ITERABLE directly 
+     # we use enumerate(ITERABLE), we are getting both the index, and the element 
+     # at each loop. 
+     print(f"The element at position {index} is {item}.")
+
+# Final one for today. 
+# Lets say we have multiple lists that are somehow connected to each other: 
+list_of_foods = ["pickle", "pepper", "cherry"]
+list_of_tatstes = ["sour", "spicy", "sweet"]
+# Here, we might want to print: "A pickle is sour", "A pepper is spicy", ... 
+# There is a way of connecting, zipping, multiple iterables together: 
+
+for (food, taste) in zip(list_of_foods, list_of_tatstes):
+     # At each iteration, we are getting one element of each list, 
+     # unpacked, into their respective step variable. 
+     print(f"A {food} is {taste}.")
+
+# What if we have three lists? 
+list_of_colors = ["green", "red", "red"]
+for (food, taste, color) in zip(list_of_foods, list_of_tatstes, list_of_colors):
+     print(f"A {food} is {color} and {taste}.")
+
+# enumerate : contais an index that we are working on 
+# zip : allows you to combine and unpack each list at each ITERATION : usually only useful with clear one-to-one mapping 
+
