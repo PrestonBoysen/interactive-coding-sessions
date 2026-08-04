@@ -57,20 +57,111 @@ for (index, item) in enumerate(Fruits):
 # Final one for today. 
 # Lets say we have multiple lists that are somehow connected to each other: 
 list_of_foods = ["pickle", "pepper", "cherry"]
-list_of_tatstes = ["sour", "spicy", "sweet"]
+list_of_tastes = ["sour", "spicy", "sweet"]
 # Here, we might want to print: "A pickle is sour", "A pepper is spicy", ... 
 # There is a way of connecting, zipping, multiple iterables together: 
 
-for (food, taste) in zip(list_of_foods, list_of_tatstes):
+for (food, taste) in zip(list_of_foods, list_of_tastes):
      # At each iteration, we are getting one element of each list, 
      # unpacked, into their respective step variable. 
      print(f"A {food} is {taste}.")
 
 # What if we have three lists? 
 list_of_colors = ["green", "red", "red"]
-for (food, taste, color) in zip(list_of_foods, list_of_tatstes, list_of_colors):
+for (food, taste, color) in zip(list_of_foods, list_of_tastes, list_of_colors):
      print(f"A {food} is {color} and {taste}.")
 
 # enumerate : contais an index that we are working on 
 # zip : allows you to combine and unpack each list at each ITERATION : usually only useful with clear one-to-one mapping 
 
+for (food, taste, color) in zip(list_of_foods, list_of_tastes, list_of_colors):
+     # at each iteration, we are getting one element of each list, 
+     # unpacked into their respective step variable. 
+     print(f"A {food} is {color} and tastes {taste}.")
+
+# Let's talk about range(). 
+
+for i in [1, 2, 3, 4, 5]: # i is the STEP VARIABLE, [1, 2, 3, 4, ,5] is the ITERABLE. 
+     print(i) # i is goint to take, in turn, the value of each of the elements in the iterable 
+# Now, imagine we ewnat to get all the numbers 0 to 1000. 
+# Writing the loop the old way: 
+for i in [0, 1, 2, 3, 4, 5, 1000]: # a bit of  a pain to write
+     print(i)
+# so, ... enter range() 
+# range is a function that creates an iterable for you that you can loop on 
+# range takes 3 arguments: start, stop, step 
+# start is optional, and defaults to 0
+# step is optional, and defaults to 1 
+for i in range(1001): # all the numbers between 0 and 1001 excluded. 
+     print(i)
+
+# start, stop, step should reminf you of slices: 
+my_list = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+my_list[0:4]
+my_list[::2]
+
+for i in range(0, 1000, 2):
+     print(i)
+
+# All there is to know about range: a comvenoent way of gettin 
+# an iterable of numbers to loop on 
+
+# The final thing on loops I want to show you is something called 
+# list comprehensions. 
+
+# Let say I want the square of all the numbers between 0 and 9: 
+# let's write a loop that iterates over nu,bers between 0 and 9, 
+# takes the square of each of them, and stores them in a list called my_squares. 
+
+my_squares = [] 
+my_numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] 
+for i in my_numbers:
+     square = i**2 
+     my_squares.append(square)
+print(my_squares)
+# could also write as 
+my_squares1 = []
+for i in my_numbers:
+     my_squares1.append(i**2)
+print(my_squares1)
+# could also write 
+my_squares2 = []
+for i in range(10):
+    my_squares2.append(i**2)
+    print(my_squares2) 
+print(f"my squares: {my_squares}, my squares 1: {my_squares1}, my squares 2: {my_squares2}")
+
+# this task, creating a new list from an existing iterabke, is EXTREMELY common in Python 
+# that's what a shortcut called LIST COMPREHENSSION is doing. 
+# here, i could have done the same thing by typing: 
+my_squares3 = [i ** 2 for i in range (10)]
+# A list comprehension is surrounded by square brackets. This is because we are creating a list. 
+# Them, you seen AN EXPRESSION: i ** 2. This defines how the step variable is going to be modified 
+# to create the elements of the list 
+# Finally, you see the loop itself: for STEP_VARIABLE in ITERABLE. ote, there is no colon here 
+print(my_squares3)
+
+my_list = [x.upper() for x in "Preston"] 
+my_list
+
+# One final thing on lilst comprehensions: 
+# We can add, after the (STEP_VARIABLE in ITERABLE) an optional IF statemente, 
+# that filters the elements of the list. 
+
+my_filtered_squares = [i ** 2 for i in range (10) if i ** 2 < 30 ] 
+# Only add to the list of the squares are less than 30: 
+my_filtered_squares
+
+# very common use case for this filter: 
+paths = ["data.csv", "report.pdf", "summary.csv", "image. png", "notes.txt", "data2.csv"]
+# lots of files of different types. 
+# lets say I just want to keep the .csv files 
+my_csv = [i for i in paths if i.endswith(".csv")]
+print(my_csv)
+
+# How could I write a for loop that would do the same job 
+my_csv = [] 
+for path in paths:
+     if path.endswith(".csv"):
+          my_csv.append(path)
+print(my_csv)
